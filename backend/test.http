@@ -1,9 +1,6 @@
-POST http://localhost:4000/app/signup
+DELETE http://localhost:4000/app/delete
 Content-Type: application/json
 
 {
-    "fullname": "James",
-    "username": "johnson",
-    "email": "james@Gmail.com",
-    "password": "3319382"
+    "id" : "5fee472090aacb3d801a0bff"
 }

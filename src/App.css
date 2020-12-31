@@ -2,3 +2,9 @@
     width: 40% !important;
     
 }
+
+.fa-trash {
+    cursor: pointer;
+    color: brown;
+    float: right;
+}
