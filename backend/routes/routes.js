@@ -1,22 +1,26 @@
 const express = require('express');
 const router = express.Router()
-const myTable = require('../models/SignupModels')
+const signUpTemplate = require('../models/SignupModels')
+const bcrypt = require('bcrypt');
+
+router.post('/signup', async (req, res) => {
+
+    const saltPassword = await bcrypt.genSalt(10)
+    const securePassword = await bcrypt.hash(req.body.password, saltPassword)
 
 
-router.post('/signup', (req, res) => {
-    
-     const signedUpUser = new myTable({
-         fullname: req.body.fullname,
-         username: req.body.username,
-         email: req.body.email,
-         password: req.body.password
-     })
+    const signedUpUser = new signUpTemplate({
+        fullname: req.body.fullname,
+        username: req.body.username,
+        email: req.body.email,
+        password: securePassword
+    })
 
-     
 
-     signedUpUser.save()
-     .then(data => res.json(data))
-     .catch(error => res.json(error))
+
+    signedUpUser.save()
+        .then(data => res.json(data))
+        .catch(error => res.json(error))
 })
 
 
